@@ -6,7 +6,7 @@ import styles from './Agroconnect.module.css';
 
 const AgriConnect = () => {
     return (
-        <div className={styles.agriConnectContainer}>
+        <div id ="agriconnect"className={styles.agriConnectContainer}>
             <div className={styles.agriConnectInfo}>
                 <h1 style={{margin:"10px 0px"}}>Why AgriConnect?</h1>
                 <p>AgriConnect is a digital marketplace that allows farmers to sell their products to buyers.</p>

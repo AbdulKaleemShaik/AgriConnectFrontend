@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import styles from './CustomerRegister.module.css';
+import { Grid, TextField, Button, MenuItem, FormHelperText } from '@mui/material';
 import CustomerNav from './CustomerNav';
-import basket from '../../assets/veggies.png';
 import { registerService } from '../../Service/UserService';
 
 const statesList = [
@@ -28,7 +27,7 @@ const CustomerRegister = () => {
     confirmPassword: ''
   });
   const [profileImage, setProfileImage] = useState(null);
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -39,47 +38,50 @@ const CustomerRegister = () => {
     setProfileImage(e.target.files[0]);
   };
 
-  const validateForm = () => {
-    const { mobileNumber, email, pincode, password, confirmPassword } = formData;
-    console.log("came to register");
-    
+  const validateField = (name, value) => {
+    let errorMsg = '';
 
-    // Mobile number validation
-    if (!/^\d{10}$/.test(mobileNumber)) {
-      setError('Mobile number must be 10 digits');
-      return false;
+    switch (name) {
+      case 'mobileNumber':
+        if (!/^\d{10}$/.test(value)) {
+          errorMsg = 'Mobile number must be 10 digits';
+        }
+        break;
+      case 'email':
+        if (!/^[\w.%+-]+@gmail\.com$/.test(value)) {
+          errorMsg = 'Email must be a valid Gmail address (ending with @gmail.com)';
+        }
+        break;
+      case 'pincode':
+        if (!/^\d{6}$/.test(value)) {
+          errorMsg = 'Pincode must be 6 digits';
+        }
+        break;
+      case 'confirmPassword':
+        if (value !== formData.password) {
+          errorMsg = 'Passwords do not match';
+        }
+        break;
+      default:
+        break;
     }
 
-    // Email validation
-    if (!/^[\w.%+-]+@gmail\.com$/.test(email)) {
-      setError('Email must be a valid Gmail address (ending with @gmail.com)');
-      return false;
-    }
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMsg }));
+  };
 
-    // Pincode validation
-    if (!/^\d{6}$/.test(pincode)) {
-      setError('Pincode must be 6 digits');
-      return false;
-    }
-
-    // Password match validation
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return false;
-    }
-
-    setError('');
-    return true;
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    validateField(name, value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
+    if (Object.values(errors).some((error) => error)) {
+      toast.error('Please correct the errors before submitting.');
       return;
     }
-    console.log("form is valisd");
-    
+
     const formDataToSend = new FormData();
     formDataToSend.append('name', formData.name);
     formDataToSend.append('mobileNumber', formData.mobileNumber);
@@ -100,7 +102,7 @@ const CustomerRegister = () => {
           navigate('/customerlogin');
         }, 0);
       } else {
-        setError(response);
+        setErrors({ form: response });
       }
     } catch (err) {
       toast.error('An error occurred during registration. Please try again.');
@@ -108,46 +110,131 @@ const CustomerRegister = () => {
   };
 
   return (
-    <div className={styles.body}>
+    <div>
       <CustomerNav />
-      <div className={styles.customer_register}>
-        <h2>Customer Registration</h2>
-        <form onSubmit={handleSubmit} className={styles.registration_form}>
-          <div className={styles.inputs_labels}>
-            <div className={styles.labels}>
-              <label>Name</label>
-              <label>Mobile Number</label>
-              <label>Email</label>
-              <label>Address</label>
-              <label>City</label>
-              <label>State</label>
-              <label>Pincode</label>
-              <label>Password</label>
-              <label>Confirm Password</label>
-              <label>Profile Image</label>
-            </div>
-            <div className={styles.inputs}>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-              <input type="text" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} required />
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-              <input type="text" name="address" value={formData.address} onChange={handleChange} required />
-              <input type="text" name="city" value={formData.city} onChange={handleChange} required />
-              <select name="state" value={formData.state} onChange={handleChange} required>
-                <option value="">Select State</option>
-                {statesList.map((state, index) => (
-                  <option key={index} value={state}>{state}</option>
-                ))}
-              </select>
-              <input type="text" name="pincode" value={formData.pincode} onChange={handleChange} required />
-              <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-              <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-              <input type="file" name="profileImage" onChange={handleFileChange} required />
-            </div>
-          </div>
-          {error && <div className={styles.error}>{error}</div>}
-          <button type="submit" className={styles.register_button}>Register</button>
-        </form>
-      </div>
+      <Grid container justifyContent="center" spacing={2} style={{ marginTop: '20px' }}>
+        <Grid item xs={12} sm={8} md={6}>
+          <h2>Customer Registration</h2>
+          <form onSubmit={handleSubmit} noValidate>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.name}
+              helperText={errors.name}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Mobile Number"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.mobileNumber}
+              helperText={errors.mobileNumber}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.email}
+              helperText={errors.email}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="City"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              select
+              label="State"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              margin="normal"
+              required
+            >
+              {statesList.map((state, index) => (
+                <MenuItem key={index} value={state}>
+                  {state}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              label="Pincode"
+              name="pincode"
+              value={formData.pincode}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.pincode}
+              helperText={errors.pincode}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.confirmPassword}
+              helperText={errors.confirmPassword}
+              margin="normal"
+              required
+            />
+            <input
+              type="file"
+              name="profileImage"
+              onChange={handleFileChange}
+              required
+              style={{ marginTop: '15px' }}
+            />
+            <FormHelperText error>{errors.form}</FormHelperText>
+            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }}>
+              Register
+            </Button>
+          </form>
+        </Grid>
+      </Grid>
     </div>
   );
 };
