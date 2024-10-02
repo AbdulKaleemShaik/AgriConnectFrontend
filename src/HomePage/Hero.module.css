@@ -1,0 +1,47 @@
+.start {
+    text-align: center;
+    background-image: url(../assets/Images/bck.jpg);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 90%;
+    height: 60vh;
+    color: white;
+}
+
+.wel {
+    font-size: 40px;
+    font-family: monospace;
+}
+
+.button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttonGreen {
+   
+    background-color: rgb(3, 254, 3);
+    color: rgb(0, 0, 0);
+}
+
+.side {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.buttonGrey {
+    background-color: grey;
+    color: black;
+}

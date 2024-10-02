@@ -1,0 +1,91 @@
+.head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* Dark background for better contrast */
+    padding: 10px 20px;
+    height: 60px; /* Adjusted height for better spacing */
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 24px; /* Slightly larger font size for logo */
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    gap: 15px; /* Adjusted gap between items */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px; /* Adjusted font size for menu items */
+}
+
+.space {
+    margin-right: 15px; /* Adjusted margin for better spacing */
+}
+
+.logo {
+    font-size: 26px; /* Larger font size for the logo */
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff; /* White color for better visibility */
+}
+
+.right a {
+    text-decoration: none;
+    color: #fff; /* White color for consistency */
+}
+
+.button {
+    padding: 10px 20px; /* Adjusted padding for better button appearance */
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px; /* Adjusted font size for buttons */
+}
+
+.buttonGreenbutton {
+    background-color: #03fe03; /* Bright green color */
+    color: #000; /* Black text for contrast */
+}
+
+.buttonGreybutton {
+    background-color: #666; /* Dark grey color */
+    color: #fff; /* White text for contrast */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .head {
+        flex-direction: column;
+        height: auto;
+        padding: 15px; /* Increased padding for better spacing */
+    }
+
+    .left {
+        margin-bottom: 10px; /* Added margin to separate logo from menu */
+    }
+
+    .right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .space {
+        margin-right: 0;
+        margin-bottom: 10px; /* Added margin bottom for better spacing */
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+        padding: 12px; /* Adjusted padding for better button appearance on smaller screens */
+    }
+}

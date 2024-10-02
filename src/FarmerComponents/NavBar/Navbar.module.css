@@ -1,0 +1,55 @@
+/* Navbar.module.css */
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  flex-grow: 1;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navLink {
+  cursor: pointer;
+  padding: 10px;
+  font-size: large;
+  font-weight: bolder;
+  color: #333;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.navLink:hover {
+   /* Light green background on hover */
+  color: #1faf27; /* Darker green text on hover */
+}
+
+.userGreeting {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.dropdownMenu {
+  margin-top: 40px;
+}
+
+.menuIcon {
+  color: #000; /* Black color for the three dots */
+}
+
+.menuItem {
+  font-weight: bold;
+}
+.userGreeting
+{
+  color: black;
+}
