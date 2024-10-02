@@ -3,6 +3,9 @@ import './PlaceOrder.css';
 import { StoreContext } from '../../../Context/StoreContext';
 import CustomerNav from '../../../CustomerComponents/Authentication/CustomerNav';
 import { useNavigate } from "react-router-dom";
+import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
+import './PlaceOrder.css';
+
 
 
 function PlaceOrder() {
@@ -83,14 +86,16 @@ function PlaceOrder() {
             {errors.lastName && <span className="error">{errors.lastName}</span>}
           </div>
 
-          {/* <input
-            // type="email"
-            // name="email"
-            // placeholder="Email address"
-            // value={formData.email}         
-            // onChange={handleInputChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>} */}
+          <div className="icon-input-container">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+
 
           <input
             type="text"

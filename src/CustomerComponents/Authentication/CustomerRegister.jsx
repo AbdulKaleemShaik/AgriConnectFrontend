@@ -6,6 +6,7 @@ import { Grid, TextField, Button, MenuItem, FormHelperText } from '@mui/material
 import CustomerNav from './CustomerNav';
 import { registerService } from '../../Service/UserService';
 
+
 const statesList = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
   "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",

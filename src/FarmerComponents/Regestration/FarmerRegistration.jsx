@@ -5,6 +5,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Grid, TextField, Button, MenuItem, Select, FormHelperText } from '@mui/material';
+import Lottie from 'react-lottie';
+import animationData from '../../assets/Lotties/farmerregestration.json';
+
+import styles from './FarmerRegister.module.css';
+
+
 
 const statesList = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -103,11 +109,23 @@ const FarmerRegistration = () => {
     }
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   return (
     <div>
       <FarmerNav />
-      <Grid container justifyContent="center" spacing={2} style={{ marginTop: '20px' }}>
-        <Grid item xs={12} sm={8} md={6}>
+      <div className={styles.lottieContainer}>
+        <Lottie options={defaultOptions} height={200} width={200} />
+      </div>
+      <Grid container justifyContent="center" spacing={1} style={{ marginTop: '20px' }}>
+        <Grid item xs={12} sm={8} md={6} className="form-container">
           <h2>Farmer Registration</h2>
           <form onSubmit={handleSubmit} noValidate>
             <TextField
@@ -121,6 +139,7 @@ const FarmerRegistration = () => {
               helperText={errors.name}
               margin="normal"
               required
+              className={styles.textField}
             />
             <TextField
               fullWidth
@@ -133,6 +152,7 @@ const FarmerRegistration = () => {
               helperText={errors.mobileNumber}
               margin="normal"
               required
+              className={styles.textField}
             />
             <TextField
               fullWidth
@@ -145,6 +165,7 @@ const FarmerRegistration = () => {
               helperText={errors.email}
               margin="normal"
               required
+              className={styles.textField}
             />
             <TextField
               fullWidth
@@ -154,6 +175,7 @@ const FarmerRegistration = () => {
               onChange={handleChange}
               margin="normal"
               required
+              className={styles.textField}
             />
             <TextField
               fullWidth
@@ -163,15 +185,17 @@ const FarmerRegistration = () => {
               onChange={handleChange}
               margin="normal"
               required
+              className={styles.textField}
             />
             <Select
               fullWidth
-              label="State"
+              label="state"
               name="state"
               value={formData.state}
               onChange={handleChange}
               margin="normal"
               required
+              className={styles.selectField}
             >
               {statesList.map((state, index) => (
                 <MenuItem key={index} value={state}>
@@ -190,6 +214,7 @@ const FarmerRegistration = () => {
               helperText={errors.pincode}
               margin="normal"
               required
+              className="text-field"
             />
             <TextField
               fullWidth
@@ -200,6 +225,7 @@ const FarmerRegistration = () => {
               onChange={handleChange}
               margin="normal"
               required
+              className="text-field"
             />
             <input
               type="file"
@@ -207,9 +233,10 @@ const FarmerRegistration = () => {
               onChange={handleChange}
               required
               style={{ marginTop: '15px' }}
+              className="file-input"
             />
             <FormHelperText error>{errors.form}</FormHelperText>
-            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }} className={styles.submitButton}>
               Register
             </Button>
           </form>

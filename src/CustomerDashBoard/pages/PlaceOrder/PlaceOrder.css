@@ -1,263 +1,83 @@
-/* .place-order {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    margin: 50px auto;
-    padding: 20px;
-    max-width: 1200px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.place-order-left {
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 40px;
-}
-
-.place-order-left .title {
-    font-weight: 600;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #333;
-}
-
-.place-order-left input, 
-.place-order-left select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    outline-color: tomato;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.place-order-left input:focus, 
-.place-order-left select:focus {
-    border-color: tomato;
-    box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.2);
-}
-
-.place-order-left .multi-fields {
-    display: flex;
-    gap: 15px;
-}
-
-.place-order-right {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-}
-
-.place-order .cart-total {
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.place-order .cart-total h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: #444;
-}
-
-.place-order .cart-total-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.place-order .cart-total-details p {
-    margin: 0;
-}
-
-.place-order .cart-total button {
-    width: 100%;
-    padding: 14px;
-    background-color: tomato;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    margin-top: 30px;
-}
-
-.place-order .cart-total button:hover {
-    background-color: #ff6347;
-    transform: scale(1.05);
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    display: block;
-} */
-/* Container for the place order form */
-/* .place-order {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    margin: 50px auto;
-    padding: 20px;
-    max-width: 1200px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.place-order-left {
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 40px;
-}
-
-.place-order-left .title {
-    font-weight: 600;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #333;
-}
-
-.place-order-left input, 
-.place-order-left select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    outline-color: tomato;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.place-order-left input:focus, 
-.place-order-left select:focus {
-    border-color: tomato;
-    box-shadow: 0px 4px 8px rgba(255, 99, 71, 0.2);
-}
-
-.place-order-left .multi-fields {
-    display: flex;
-    gap: 15px;
-}
-
-.place-order-right {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-}
-
-.place-order .cart-total {
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.place-order .cart-total h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: #444;
-}
-
-.place-order .cart-total-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.place-order .cart-total-details p {
-    margin: 0;
-}
-
-.place-order .cart-total button {
-    width: 100%;
-    padding: 14px;
-    background-color: tomato;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    margin-top: 30px;
-}
-
-.place-order .cart-total button:hover {
-    background-color: #ff6347;
-    transform: scale(1.05);
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    display: block;
-}
+/* PlaceOrder.css */
 .place-order {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
     padding: 20px;
   }
   
-  .place-order-left, .place-order-right {
-    width: 48%; 
+  .place-order-left {
+    flex: 0.7;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .place-order-left input,
-  .place-order-left select {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  .place-order-right {
+    flex: 0.3;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
   }
   
   .multi-fields {
     display: flex;
-    justify-content: space-between;
+    gap: 20px; /* Adds space between input fields */
+    margin-bottom: 20px;
   }
   
-  .multi-fields input, .multi-fields select {
-    width: 48%;
+  input, select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .icon-input-container {
+    margin-bottom: 20px;
   }
   
   .error {
     color: red;
     font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
   }
   
   .cart-total {
-    border: 1px solid #ccc;
+    background-color: #f1f1f1;
     padding: 20px;
     border-radius: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  .cart-total h2 {
-    margin-bottom: 20px;
   }
   
   .cart-total-details {
@@ -266,137 +86,11 @@
     margin-bottom: 10px;
   }
   
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+  hr {
+    border: 1px solid #ccc;
   }
   
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-   */
-/* .place-order {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.place-order-left,
-.place-order-right {
-    flex: 1;
-    min-width: 300px;
-}
-
-.place-order-right {
-    margin-top: 40px;
-}
-
-.place-order-left input,
-.place-order-left select {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.multi-fields {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.multi-fields input,
-.multi-fields select {
-    width: 100%;
-}
-
-.error {
-    color: red;
-    font-size: 12px;
-    margin-top: -8px;
-}
-
-.cart-total {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-.cart-total h2 {
-    margin-bottom: 20px;
-}
-
-.cart-total-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-} */
-
-/* PlaceOrder.css */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
-
-.place-order {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.place-order-left,
-.place-order-right {
-    flex: 1;
-    margin-right: 2rem;
-}
-
-.place-order-right {
-    max-width: 400px;
-    margin-right: 0;
-}
-
-.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #333;
-}
-
+  
 input,
 select {
     width: 100%;
@@ -434,7 +128,7 @@ select:focus {
 button[type="submit"] {
     width: 100%;
     padding: 1rem;
-    background-color: #007bff;
+    background-color:  #d9534f;
     border: none;
     border-radius: 5px;
     color: white;
@@ -446,7 +140,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #ff0000;
 }
 
 .cart-total {
@@ -454,6 +148,7 @@ button[type="submit"]:hover {
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: -0px;
 }
 
 .cart-total h2 {

@@ -1,62 +1,17 @@
-// import React, { useState } from 'react';
-// import styles from './AskEmailPage.module.css';
-// import { FaEnvelope } from 'react-icons/fa';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-
-// const ForgetPassword = () => {
-//   const [email, setEmail] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.post('http://localhost:8080/user/api/forgot-password', { email });
-//       // alert('OTP sent to your email');
-//       navigate(`/resetPassword/${email}`);
-//     } catch (error) {
-//       console.error('Error sending OTP', error);
-//     }
-//   };
-//   return (
-//     <div className={styles.container}>
-//       <div className={styles.header}>
-//         <h2>Forgot Password?</h2>
-//         <p>"Lost Password? Harvest your access faster than a bumper crop!"</p>
-//       </div>
-//       <form onSubmit={handleSubmit} className={styles.form}>
-//         <div className={styles.inputWrapper}>
-//           <FaEnvelope className={styles.icon} />
-//           <input
-//             type="email"
-//             placeholder="Enter your email"
-//             className={styles.input}
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             required
-//           />
-//         </div>
-//         <button type="submit" className={styles.resetButton}>Submit</button>
-//       </form>
-//       <a href="/customerlogin" className={styles.backToLogin}>
-//         &larr; Back to Login
-//       </a>
-//     </div>
-//   );
-// };
-
-// export default ForgetPassword;
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Container, Box, Grid, Link, Paper } from '@mui/material';
 import { FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { styled } from '@mui/system';
+import Lottie from 'react-lottie'; // Import Lottie
+import animationData from '../assets/Lotties/forgetpassword.json'
 
 const StyledPaper = styled(Paper)({
   padding: '2rem',
   borderRadius: '12px',
   boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#f9f9f9',
 });
 
 const ForgetPassword = () => {
@@ -73,14 +28,24 @@ const ForgetPassword = () => {
     }
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   return (
     <Container maxWidth="sm" sx={{ mt: 8 }}>
       <StyledPaper elevation={3}>
         <Box textAlign="center" mb={3}>
+          <Lottie options={defaultOptions} height={150} width={150} />
           <Typography variant="h4" component="h1" gutterBottom>
             Forgot Password?
           </Typography>
-          <Typography variant="body1" color="textSecondary">
+          <Typography variant="body1" color="textSecondary" sx={{ mb: 2 }}>
             "Lost Password? Harvest your access faster than a bumper crop!"
           </Typography>
         </Box>
@@ -89,7 +54,7 @@ const ForgetPassword = () => {
           <Box mb={2}>
             <Grid container alignItems="flex-end">
               <Grid item>
-                <FaEnvelope size={24} style={{ marginRight: '8px', color: '#555' }} />
+                <FaEnvelope size={24} style={{ marginBottom :'18px',marginRight: '8px', color: '#555' }} />
               </Grid>
               <Grid item xs>
                 <TextField

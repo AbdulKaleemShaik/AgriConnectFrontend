@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
-import { Axios } from 'axios';
-import googlelogo from '../../assets/google-logo.png';
 import FarmerNav from '../FarmerNav';
 import farmerImg1 from '../../assets/farmer-image2.png';
 import { useNavigate, Link } from 'react-router-dom';
@@ -103,7 +101,7 @@ const FarmerLogin = () => {
               />
             </div>
             <div>
-              <Link to="/forgotPassword" className={styles.forgot_password}>
+              <Link to="/forgetPassword" className={styles.forgot_password}>
                 Forgot your password?
               </Link>
             </div>
