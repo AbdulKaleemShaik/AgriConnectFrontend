@@ -7,7 +7,7 @@ const DashBoard = () => {
       <Navbar />
 
       <div className={styles.imageContainer}>
-        <img src="src/assets/Images/farmers dashbord.jpeg" alt="National Farmer's Day" />
+        <img src="src/assets/farmerdashboard.png" alt="National Farmer's Day" />
       </div>
 
       <div className={styles.featuresSection}>

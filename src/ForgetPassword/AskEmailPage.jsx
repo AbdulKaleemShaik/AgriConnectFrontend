@@ -4,8 +4,11 @@ import { FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { styled } from '@mui/system';
-import Lottie from 'react-lottie'; // Import Lottie
-import animationData from '../assets/Lotties/forgetpassword.json'
+import Lottie from 'react-lottie';
+import animationData from '../assets/Lotties/forgetpassword.json';
+import Loading from './SendinMail';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StyledPaper = styled(Paper)({
   padding: '2rem',
@@ -16,18 +19,27 @@ const StyledPaper = styled(Paper)({
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await axios.post('http://localhost:8080/user/api/forgot-password', { email });
       navigate(`/resetPassword/${email}`);
     } catch (error) {
-      console.error('Error sending OTP', error);
+      if(error.response.data == "Error: Email not found")
+      {
+        toast.error("No account found with this email address");
+      }
+      else{
+        toast.error("something went wrong ");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
-
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -37,7 +49,13 @@ const ForgetPassword = () => {
     },
   };
 
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
+    <>
     <Container maxWidth="sm" sx={{ mt: 8 }}>
       <StyledPaper elevation={3}>
         <Box textAlign="center" mb={3}>
@@ -54,7 +72,7 @@ const ForgetPassword = () => {
           <Box mb={2}>
             <Grid container alignItems="flex-end">
               <Grid item>
-                <FaEnvelope size={24} style={{ marginBottom :'18px',marginRight: '8px', color: '#555' }} />
+                <FaEnvelope size={24} style={{ marginBottom: '18px', marginRight: '8px', color: '#555' }} />
               </Grid>
               <Grid item xs>
                 <TextField
@@ -90,6 +108,8 @@ const ForgetPassword = () => {
         </Box>
       </StyledPaper>
     </Container>
+    <ToastContainer/>
+    </>
   );
 };
 

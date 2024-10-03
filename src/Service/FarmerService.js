@@ -10,7 +10,6 @@ export const getAllOrders = async () => {
 
 
 export const updateOrderStatus = async (id, st) => {
-  console.log(st)
   const response = await axiosInstance.post(`/admin/update-order-status`, null, {
     params: {
       id: id,

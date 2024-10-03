@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { getAllOrders, updateOrderStatus,getOrderById } from '../../Service/FarmerService';  
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../NavBar/NavBar'
+import Updating from './Updating.jsx';
 
 const columns = [
   { id: 'orderId', label: 'Order ID', minWidth: 150 },
@@ -29,6 +30,7 @@ export default function OrderTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
   const [orderStatuses, setOrderStatuses] = useState({}); 
+  const [updating,setUpdating] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -54,15 +56,17 @@ export default function OrderTable() {
 
   const handleUpdateStatus = async (orderId,temp) => {
     const updatedStatus = orderStatuses[temp];
-    console.log(updatedStatus);
     if (updatedStatus!=null) {
+      setUpdating(true);
       try {
         const response = await updateOrderStatus(orderId, updatedStatus);
-        console.log(response);
-        toast.success(`Order ${orderId} status updated to ${updatedStatus}`);
+        toast.success(`Order ${orderId} status updated`);
     } catch (error) {
-        console.error("Error updating order status:", error);
+        
         toast.error("Failed to update order status");
+    }
+    finally{
+      setUpdating(false);
     }
     
     } else {
@@ -99,6 +103,11 @@ export default function OrderTable() {
     }
   };
   
+  if(updating){
+    return(
+      <Updating />
+    )
+  }
 
   return (
     <>
