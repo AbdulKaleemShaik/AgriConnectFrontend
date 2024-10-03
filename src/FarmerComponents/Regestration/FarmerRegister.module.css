@@ -1,108 +1,74 @@
 .farmer_registration {
-    padding: 20px;
-    max-width: 650px;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(230, 230, 230, 0.6);
-    margin-top: 30px;
-  }
-  /* FarmerRegister.module.css */
-
-.dropdown {
-  width: 100%;
-  margin-bottom: 15px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(250, 250, 250, 0.9);
+  margin-top: 40px;
 }
 
-select {
+.lottieContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.farmer_registration h2 {
+  text-align: center;
+  color: #4caf50;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.text-field, .select-field {
   margin-top: 10px;
-  width: 100%;
+}
+
+.text-field input, .select-field select {
+  transition: all 0.3s ease;
+}
+
+.text-field input:focus, .select-field select:focus {
+  border-color: #4caf50;
+}
+
+.farmer_registration input, .select-field select {
   padding: 10px;
-  font-size: 16px;
+  font-size: 1rem;
+  margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  color: #333;
-  outline: none;
-  transition: border-color 0.3s ease;
+  width: 100%;
 }
 
-select:focus {
-  border-color: #007bff;
+.farmer_registration button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
-select option {
-  padding: 10px;
+.farmer_registration button:hover {
+  background-color: #388e3c;
 }
 
-/* Error state for invalid dropdown */
-.select-error {
-  border-color: red;
-  background-color: #ffe6e6;
+.file-input {
+  margin-top: 15px;
 }
 
-  .body{
-    /* background: url("../../assets/field-image.jpg") no-repeat center center; */
-    background-size: cover;
-  }
-  .farmer_registration h2 {
-    text-align: center;
-    color: #28a745;
-    font-size: 25px;
-    margin-bottom: 0px;
-  }
-  
-  .farmer_registration form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .farmer_registration label {
-    margin-bottom: 5px;
-    color: #000000;
-    font-size: 1.22rem;
-    padding-top: 25px;
-  }
-  
-  .farmer_registration input {
-    padding: 8px;
-    font-size: 16px;
-    margin-top: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-  }
-  .inputs{
-    display: flex;
-    flex-direction: column ;
-    font-size: 1.3rem;
-  }
-  .labels{
-    display: flex;
-    flex-direction: column;
-  }
-  .inputs_labels{
-    display: flex;
-    justify-content: space-evenly;
+@media (max-width: 768px) {
+  .farmer_registration {
+    max-width: 100%;
+    padding: 15px;
   }
 
-  .farmer_registration button {
-    padding: 10px;
-    font-size: 18px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 150px;
-    margin: 20px 35%;
+  .lottie-container {
+    margin: 20px 0;
   }
-  .farmer_registration input:focus {
-    outline: none;
-    border-color: #28a745;
-  }
-  .farmer_registration button:hover {
-    background-color: #218838;
-  }
-  
-  
+}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Login.module.css';
-import googlelogo from '../../assets/google-logo.png';
+import styles from '../Authentication/Login.module.css';
 import CustomerNav from './CustomerNav';
 import CustomerImage from '../../assets/buyer-2.png';
 import { useNavigate, Link } from 'react-router-dom';
@@ -30,7 +29,7 @@ const CustomerLogin = () => {
         const userData = response.data;
         setUserDetails(userData);
         console.log(userData);
-
+  
         localStorage.setItem('userDetails', JSON.stringify(userData));
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -62,12 +61,12 @@ const CustomerLogin = () => {
   return (
     <div className={styles.full}>
       <NavBar />
-      <CustomerNav />
+      <CustomerNav/>
       <div className={styles.body}>
         <img className={styles.customerImage} src={CustomerImage} alt="Customer" />
         <div className={styles.login_form}>
-
-
+          
+             
           <form onSubmit={handleLogin}>
             <div className={styles.inputs}>
               <input

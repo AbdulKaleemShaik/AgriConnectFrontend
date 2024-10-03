@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import styles from "./FarmerRegister.module.css";
 import FarmerNav from "../FarmerNav";
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { Grid, TextField, Button, MenuItem, Select, FormHelperText } from '@mui/material';
+import Lottie from 'react-lottie';
+import animationData from '../../assets/Lotties/farmerregestration.json';
 
+import styles from './FarmerRegister.module.css';
+
+
+
+const statesList = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
+  "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+];
 
 const FarmerRegistration = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +33,7 @@ const FarmerRegistration = () => {
     profileImage: null,
   });
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -30,35 +43,42 @@ const FarmerRegistration = () => {
     });
   };
 
-  const validateForm = () => {
-    const { mobileNumber, email, pincode, password } = formData;
+  const validateField = (name, value) => {
+    let errorMsg = '';
 
-    // Mobile number validation
-    if (!/^\d{10}$/.test(mobileNumber)) {
-      setError('Mobile number must be 10 digits');
-      return false;
+    switch (name) {
+      case 'mobileNumber':
+        if (!/^\d{10}$/.test(value)) {
+          errorMsg = 'Mobile number must be 10 digits';
+        }
+        break;
+      case 'email':
+        if (!/^[\w.%+-]+@gmail\.com$/.test(value)) {
+          errorMsg = 'Email must be a valid Gmail address (ending with @gmail.com)';
+        }
+        break;
+      case 'pincode':
+        if (!/^\d{6}$/.test(value)) {
+          errorMsg = 'Pincode must be 6 digits';
+        }
+        break;
+      default:
+        break;
     }
 
-    // Email validation
-    if (!/^[\w.%+-]+@gmail\.com$/.test(email)) {
-      setError('Email must be a valid Gmail address (ending with @gmail.com)');
-      return false;
-    }
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMsg }));
+  };
 
-    // Pincode validation
-    if (!/^\d{6}$/.test(pincode)) {
-      setError('Pincode must be 6 digits');
-      return false;
-    }
-
-    setError('');
-    return true;
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    validateField(name, value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
+    if (Object.values(errors).some((error) => error)) {
+      toast.error('Please correct the errors before submitting.');
       return;
     }
 
@@ -80,151 +100,148 @@ const FarmerRegistration = () => {
         },
       });
 
-      toast.success('Registration successful!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
       toast.success('Registration Successful!');
       setTimeout(() => {
-        navigate('/farmerlogin'); 
+        navigate('/farmerlogin');
       }, 0);
-
-
     } catch (error) {
-      toast.error('Registration failed. Please try again.', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error('Registration failed. Please try again.');
+    }
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
     }
   };
 
   return (
-    <div className={styles.body}>
+    <div>
       <FarmerNav />
-      <div className={styles.farmer_registration}>
-        <form onSubmit={handleSubmit}>
-          <h2>Farmer Registration</h2>
-          <div className={styles.inputs_labels}>
-            <div className={styles.labels}>
-              <label>Name</label>
-              <label>Mobile Number</label>
-              <label>Email</label>
-              <label>Address</label>
-              <label>City</label>
-              <label>State</label>
-              <label>Pincode</label>
-              <label>Password</label>
-              <label>Profile Image</label>
-            </div>
-            <div className={styles.inputs}>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
-              />
-              <select
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className={styles.dropdown}
-                required
-              >
-                <option value="" disabled>Select your state</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand</option>
-                <option value="West Bengal">West Bengal</option>
-              </select>
-              <input
-                type="text"
-                name="pincode"
-                value={formData.pincode}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="file"
-                name="profileImage"
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-          {error && <div className={styles.error}>{error}</div>}
-          <button type="submit">Register</button>
-        </form>
+      <div className={styles.lottieContainer}>
+        <Lottie options={defaultOptions} height={200} width={200} />
       </div>
+      <Grid container justifyContent="center" spacing={1} style={{ marginTop: '20px' }}>
+        <Grid item xs={12} sm={8} md={6} className="form-container">
+          <h2>Farmer Registration</h2>
+          <form onSubmit={handleSubmit} noValidate>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.name}
+              helperText={errors.name}
+              margin="normal"
+              required
+              className={styles.textField}
+            />
+            <TextField
+              fullWidth
+              label="Mobile Number"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.mobileNumber}
+              helperText={errors.mobileNumber}
+              margin="normal"
+              required
+              className={styles.textField}
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.email}
+              helperText={errors.email}
+              margin="normal"
+              required
+              className={styles.textField}
+            />
+            <TextField
+              fullWidth
+              label="Address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              margin="normal"
+              required
+              className={styles.textField}
+            />
+            <TextField
+              fullWidth
+              label="City"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              margin="normal"
+              required
+              className={styles.textField}
+            />
+            <Select
+              fullWidth
+              label="state"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              margin="normal"
+              required
+              className={styles.selectField}
+            >
+              {statesList.map((state, index) => (
+                <MenuItem key={index} value={state}>
+                  {state}
+                </MenuItem>
+              ))}
+            </Select>
+            <TextField
+              fullWidth
+              label="Pincode"
+              name="pincode"
+              value={formData.pincode}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={!!errors.pincode}
+              helperText={errors.pincode}
+              margin="normal"
+              required
+              className="text-field"
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              margin="normal"
+              required
+              className="text-field"
+            />
+            <input
+              type="file"
+              name="profileImage"
+              onChange={handleChange}
+              required
+              style={{ marginTop: '15px' }}
+              className="file-input"
+            />
+            <FormHelperText error>{errors.form}</FormHelperText>
+            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }} className={styles.submitButton}>
+              Register
+            </Button>
+          </form>
+        </Grid>
+      </Grid>
       <ToastContainer />
     </div>
   );

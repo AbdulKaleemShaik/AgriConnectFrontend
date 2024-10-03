@@ -3,7 +3,7 @@ import styles from './Working.module.css';
 
 function Working() {
     return (
-        <div className={styles.main}>
+        <div id ="working" className={styles.main}>
             <h1 className={styles.title}>How It Works</h1>
             <div className={styles.use}>
                 <WorkSection

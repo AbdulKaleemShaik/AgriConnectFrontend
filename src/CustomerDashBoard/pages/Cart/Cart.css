@@ -198,7 +198,7 @@
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    background-color: #4caf50;
+    background-color:  #d9534f;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -206,7 +206,7 @@
   }
   
   .cart-total button:hover {
-    background-color: #45a049;
+    background-color: #ff0000;
   }
   
   .cart-promocode p {

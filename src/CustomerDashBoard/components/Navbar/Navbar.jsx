@@ -10,25 +10,26 @@ const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("menu");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
-  const { userDetails } = useUser(); // Access user details from context
+  const { userDetails } = useUser();
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userDetails");
     setToken("");
-    navigate("/customerlogin"); // Navigate to customer login after logout
+    navigate("/customerlogin"); 
   };
 
   return (
     <div className="navbar">
       <Link to="/">
-        <h2 style={{ color: "red" }}>AgriConnect</h2>
+        <h2 style={{ color: "red" , textDecoration:"under-line"}}>AgriConnect</h2>
       </Link>
       <ul className="navbar-menu">
         <Link
-          to="/"
+          to="/customerdashboard"
           onClick={() => setMenu("home")}
           className={menu === "home" ? "active" : ""}
+          
         >
           home
         </Link>
@@ -55,7 +56,6 @@ const Navbar = ({ setShowLogin }) => {
         </a>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="Search Icon" />
         <div className="navbar-search-icon">
           <Link to="/customerdashboard/cart">
             <img src={assets.basket_icon} alt="Basket Icon" />
@@ -71,7 +71,7 @@ const Navbar = ({ setShowLogin }) => {
               alt="Profile"
             />
           ) : (
-            <Avatar /> // Show a default avatar if userDetails or profileImage is not available
+            <Avatar />
           )}
           <ul className="nav-profile-dropdown">
             <Link to="/customerdashboard/customerorders">

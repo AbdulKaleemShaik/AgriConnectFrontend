@@ -6,6 +6,7 @@
 }
 
 .imageContainer {
+  margin-top: -50px;
   flex: 0 0 200px;
   height: 200px; /* Set height to match the image's round shape */
   width: 200px; /* Set width to ensure it's round */
