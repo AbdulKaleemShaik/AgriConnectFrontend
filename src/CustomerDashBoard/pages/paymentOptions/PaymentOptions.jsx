@@ -461,7 +461,7 @@ function PaymentOptions() {
             'Content-Type': 'multipart/form-data'
           }
         });
-        // console.log(response);
+         console.log(response);
 
 
       } catch (error) {
