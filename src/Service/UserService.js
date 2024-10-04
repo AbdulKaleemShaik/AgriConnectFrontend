@@ -9,7 +9,7 @@ const loginService = async (loginInfo) => {
   };
 
   const response = await axiosInstance.post('/api/auth/login', loginInfo, config);
-  console.log(response);
+ // console.log(response);
   if (response.data && response.data.token) {
     localStorage.setItem('token', response.data.token);
   }

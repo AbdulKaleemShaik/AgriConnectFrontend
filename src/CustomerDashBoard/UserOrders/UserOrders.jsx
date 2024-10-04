@@ -15,7 +15,7 @@ const UserOrders = () => {
         const fetchOrders = async () => {
             try {
                 const response = await axiosInstance.get('/user/user-orders');
-                console.log(response)
+                // console.log(response)
                 setOrders(response.data);
                 setLoading(false);
             } catch (err) {
@@ -78,16 +78,16 @@ const UserOrders = () => {
                                     </td>
                                     <td>{order.product.title}</td>
                                     <td>{order.quantity}</td>
-                                    <td>${order.price*order.quantity}</td>
+                                    <td>${order.price * order.quantity}</td>
                                     <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                                     <td>{order.orderAddress.address}, {order.orderAddress.city}</td>
                                     <td>
-                                    <button
-                                        onClick={() => handleShowModal(order)}
-                                        className="view_status_button"
-                                    >
-                                        Status
-                                    </button>
+                                        <button
+                                            onClick={() => handleShowModal(order)}
+                                            className="view_status_button"
+                                        >
+                                            Status
+                                        </button>
 
                                     </td>
                                 </tr>

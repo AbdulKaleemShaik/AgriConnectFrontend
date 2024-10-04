@@ -93,6 +93,8 @@
 // export default Cart;
 import React, { useContext } from "react";
 import "./Cart.css";
+import { useEffect } from "react";
+import axiosInstance from "../../../Service/AxiosInstant";
 import { StoreContext } from "../../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import CustomerNav from "../../../CustomerComponents/Authentication/CustomerNav";
@@ -101,9 +103,17 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons"; // Import the tr
 import { useUser } from "../../../Context/UserContext";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, removeFromCart, getTotalCartAmount, setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
   const { userDetails } = useUser();
+
+  useEffect(() => {
+
+    axiosInstance.get(`${import.meta.env.VITE_API_URL}/user/cart`).then((response) => {
+      setCartItems(response.data);
+    });
+  }, []);
+console.log(cartItems);
 
   return (
     <>
@@ -127,7 +137,7 @@ const Cart = () => {
                   <div key={index}>
                     <div className="cart-items-title cart-items-item">
                       <img
-                        src={`${import.meta.env.VITE_API_URL}/img/product_img/${item.image}`}
+                        src={`${import.meta.env.VITE_API_URL}/img/product_img/${item.product.image}`}
                         alt={item.title}
                       />
                       <p>{item.title}</p>
