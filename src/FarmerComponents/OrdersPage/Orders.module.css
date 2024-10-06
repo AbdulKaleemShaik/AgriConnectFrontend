@@ -63,3 +63,8 @@ h2 {
 .cancel_button:hover {
     background-color: #ff3333;
 }
+
+.tableCell:hover {
+    background-color: #d4edda; /* Light green on hover */
+  }
+

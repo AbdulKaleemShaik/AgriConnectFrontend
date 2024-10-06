@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../Service/AxiosInstant';
+import axiosInstance from '../../../Service/AxiosInstant';
 import { Avatar, Box, Button, Card, Container, Grid, TextField, Typography } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useUser } from '../../Context/UserContext';
-import NavBar from '../NavBar/NavBar'
-import profilePhoto from '../../assets/pic1.png';
-import styles from './ProfilePage.module.css'; // Custom CSS Module
+import { useUser } from '../../../Context/UserContext';
+// import NavBar from '../../components/Navbar';
+import profilePhoto from '../../../assets/pic1.png';
+import styles from './ProfilePage.module.css'; 
 
-function ProfilePage() {
- 
-  
-
-
-
+function CustomerProfilePage() {
   const { setUserDetails } = useUser();
   const [previewImage, setPreviewImage] = useState(profilePhoto); 
   const [formData, setFormData] = useState({
@@ -37,8 +32,9 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axiosInstance.get('/admin/profiledetailsofuser');
+        const response = await axiosInstance.get('/user/profiledetailsofuser');
         const userData = response.data;
+
         setUserDetails(userData);
 
         setFormData({
@@ -114,7 +110,7 @@ function ProfilePage() {
     }
 
     try {
-      const response = await axiosInstance.post('/admin/update-profile', profileFormData, {
+      const response = await axiosInstance.post('/user/update-profile', profileFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       const updatedProfileImage = response.data.profileImage;
@@ -127,6 +123,7 @@ function ProfilePage() {
       toast.error(error.response ? error.response.data : 'Error updating profile');
     }
   };
+  
 
   const handleChangePasswordSubmit = async (e) => {
     e.preventDefault();
@@ -151,7 +148,7 @@ function ProfilePage() {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <Container maxWidth="md" sx={{ mt: 5 }}>
         <ToastContainer />
         <Card sx={{ p: 4 }} className={styles.card}>
@@ -325,4 +322,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default CustomerProfilePage;

@@ -45,7 +45,22 @@ h2 {
   border-radius: 5px;
 }
 
+.cancle_button{
+  background-color: orange; 
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
 
+.cancle_button:hover {
+  background-color: #ffaa00; /* Darker green */
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Elevate on hover */
+}
 .view_status_button {
   background-color: #d9534f; 
   color: white;

@@ -20,8 +20,7 @@ const columns = [
 
 const statusOptions = [
   'Order placed', 'Order confirmed', 'Order processing', 'Shipped/Dispatched',
-  'In transit', 'Out for delivery', 'Delivered', 'Attempted delivery',
-  'Canceled', 'Held at customs', 'Awaiting pickup', 'Delayed', 'Lost'
+  'In transit', 'Out for delivery', 'Delivered'
 ];
 
 export default function OrderTable() {
@@ -116,18 +115,7 @@ export default function OrderTable() {
       <ToastContainer />
       <h2>Order List</h2>
       
-      {/* Search bar */}
-      <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <TextField 
-          variant="outlined" 
-          size="small" 
-          placeholder="Search by Order ID" 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          sx={{ mr: 2 }} 
-        />
-        <Button variant="contained" color="primary" onClick={handleSearch}>Search</Button>
-      </div>
+  
       
       {/* Table */}
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -196,7 +184,7 @@ export default function OrderTable() {
                     <Button
                       className="actionButton"
                       sx={{
-                        backgroundColor: '#007bff',
+                        backgroundColor: 'rgb(43, 164, 32)',
                         color: 'white',
                         ':hover': { backgroundColor: '#0056b3' },
                         padding: '8px 12px',
