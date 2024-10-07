@@ -24,7 +24,10 @@ import PaymentOptions from './CustomerDashBoard/pages/paymentOptions/PaymentOpti
 import ProtectedRoute from './ProtectedRoute';
 import CustomerOrdersPage from './CustomerDashBoard/UserOrders/UserOrders'
 import FarmerOrders from './FarmerComponents/OrdersPage/FarmerOrdersPage'
-// import AskEmailPage from './ForgetPassword/AskEmailPage'
+import OrderTracking from './CustomerDashBoard/UserOrders/OrderTracking';
+import CustomerProfilePage from './CustomerDashBoard/pages/ProfilePage/CustomerProfilePage'
+
+import MSP from './FarmerComponents/DashBoard/MSP'
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
         <Route path='/farmerlogin' element={<FarmerLogin />} />
         <Route path='/farmerorders' element={<FarmerOrders />}></Route>
         <Route path='/farmerregistration' element={<FarmerRegestration />} />
+        <Route path='/minimum-support-prize' element={<MSP />}></Route>
         <Route path='/resetPassword/:email' element={<ResetPassword/>}/>
 
         {/* Protected Routes */}
@@ -48,7 +52,10 @@ function App() {
             <Route path='cart' element={<Cart />} />
             <Route path='customerorders' element={<CustomerOrdersPage />}></Route>
             <Route path='product/:id' element={<ProductDetails />} />
+            
             <Route path="order" element={<PlaceOrder />} />
+            <Route path='customer-profilepage' element={<CustomerProfilePage/>}></Route>
+            <Route path="tracking-page" element={<OrderTracking />}></Route>
             <Route path='paymentoptions' element={<PaymentOptions />} />
           </Route>
         </Route>

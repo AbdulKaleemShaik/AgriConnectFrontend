@@ -11,6 +11,7 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
   const { userDetails } = useUser();
+  console.log(userDetails.profileImage);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -21,7 +22,7 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div className="navbar">
-      <Link to="/">
+      <Link to="/customerdashboard">
         <h2 style={{ color: "red" , textDecoration:"under-line"}}>AgriConnect</h2>
       </Link>
       <ul className="navbar-menu">
@@ -31,22 +32,24 @@ const Navbar = ({ setShowLogin }) => {
           className={menu === "home" ? "active" : ""}
           
         >
-          home
+          Home
         </Link>
         <a
           href="#explore-menu"
           onClick={() => setMenu("menu")}
           className={menu === "menu" ? "active" : ""}
         >
-          menu
+          Menu
         </a>
+
         <a
-          href="#app-download"
-          onClick={() => setMenu("mobile-app")}
-          className={menu === "mobile-app" ? "active" : ""}
+          href="#food-display"
+          onClick={() => setMenu("food-display")}
+          className={menu === "food-display" ? "active" : ""}
         >
-          mobile-app
+          Fresh Goods
         </a>
+        
         <a
           href="#footer"
           onClick={() => setMenu("contact us")}
@@ -62,18 +65,29 @@ const Navbar = ({ setShowLogin }) => {
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
+        {console.log(userDetails.profileImage)}
         <div className="navbar-profile">
-          {/* Check if userDetails exists and has a profileImage */}
           {userDetails && userDetails.profileImage ? (
+            
             <img
               className="profile-image"
-              src={`${import.meta.env.VITE_API_URL}/img/profile_img/${userDetails.profileImage}`}
+              src={
+                userDetails && userDetails.profileImage
+                  ? `${import.meta.env.VITE_API_URL}/img/profile_img/${userDetails.profileImage}`
+                  : '/static/images/avatar/1.jpg'
+              }
               alt="Profile"
             />
           ) : (
             <Avatar />
           )}
           <ul className="nav-profile-dropdown">
+          <Link to="/customerdashboard/customer-profilepage">
+              <li>
+                <img src={assets.bag_icon} alt="customer-profilepage" /> <p>Edit Profile</p>
+              </li>
+            </Link>
+            <hr />
             <Link to="/customerdashboard/customerorders">
               <li>
                 <img src={assets.bag_icon} alt="Orders" /> <p>Orders</p>

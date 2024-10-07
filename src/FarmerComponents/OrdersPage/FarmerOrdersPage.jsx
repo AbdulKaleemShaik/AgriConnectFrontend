@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { getAllOrders, updateOrderStatus,getOrderById } from '../../Service/FarmerService';  
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../NavBar/NavBar'
+import Updating from './Updating.jsx';
 
 const columns = [
   { id: 'orderId', label: 'Order ID', minWidth: 150 },
@@ -19,8 +20,7 @@ const columns = [
 
 const statusOptions = [
   'Order placed', 'Order confirmed', 'Order processing', 'Shipped/Dispatched',
-  'In transit', 'Out for delivery', 'Delivered', 'Attempted delivery',
-  'Canceled', 'Held at customs', 'Awaiting pickup', 'Delayed', 'Lost'
+  'In transit', 'Out for delivery', 'Delivered'
 ];
 
 export default function OrderTable() {
@@ -29,6 +29,7 @@ export default function OrderTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
   const [orderStatuses, setOrderStatuses] = useState({}); 
+  const [updating,setUpdating] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -54,15 +55,17 @@ export default function OrderTable() {
 
   const handleUpdateStatus = async (orderId,temp) => {
     const updatedStatus = orderStatuses[temp];
-    console.log(updatedStatus);
     if (updatedStatus!=null) {
+      setUpdating(true);
       try {
         const response = await updateOrderStatus(orderId, updatedStatus);
-        console.log(response);
-        toast.success(`Order ${orderId} status updated to ${updatedStatus}`);
+        toast.success(`Order ${orderId} status updated`);
     } catch (error) {
-        console.error("Error updating order status:", error);
+        
         toast.error("Failed to update order status");
+    }
+    finally{
+      setUpdating(false);
     }
     
     } else {
@@ -99,6 +102,11 @@ export default function OrderTable() {
     }
   };
   
+  if(updating){
+    return(
+      <Updating />
+    )
+  }
 
   return (
     <>
@@ -107,18 +115,7 @@ export default function OrderTable() {
       <ToastContainer />
       <h2>Order List</h2>
       
-      {/* Search bar */}
-      <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <TextField 
-          variant="outlined" 
-          size="small" 
-          placeholder="Search by Order ID" 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          sx={{ mr: 2 }} 
-        />
-        <Button variant="contained" color="primary" onClick={handleSearch}>Search</Button>
-      </div>
+  
       
       {/* Table */}
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -187,7 +184,7 @@ export default function OrderTable() {
                     <Button
                       className="actionButton"
                       sx={{
-                        backgroundColor: '#007bff',
+                        backgroundColor: 'rgb(43, 164, 32)',
                         color: 'white',
                         ':hover': { backgroundColor: '#0056b3' },
                         padding: '8px 12px',

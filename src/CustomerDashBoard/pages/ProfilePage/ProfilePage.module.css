@@ -1,0 +1,121 @@
+/* ProfilePage.module.css */
+
+/* General container styles */
+.card {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Avatar */
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #ff4d4d;
+  transition: border-color 0.3s ease;
+}
+
+.avatar:hover {
+  border-color: #ff3333;
+}
+
+/* Buttons */
+.uploadBtn {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.uploadBtn:hover {
+  background-color: #ff3333;
+}
+
+.submitBtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+/* Input fields */
+.MuiTextField-root {
+  margin-bottom: 20px;
+}
+
+input, .MuiOutlinedInput-root {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.MuiOutlinedInput-root:focus-within {
+  border-color: #ff4d4d;
+}
+
+.MuiInputLabel-root {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Responsive grid layout */
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .gridContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .gridContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Toast container styles */
+.Toastify__toast {
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.Toastify__toast--error {
+  background-color: #ff4d4d !important;
+}
+
+.Toastify__toast-body {
+  font-family: 'Roboto', sans-serif;
+}

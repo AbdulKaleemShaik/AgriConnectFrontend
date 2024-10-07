@@ -1,24 +1,35 @@
 import React from 'react';
 import styles from './DashBoard.module.css';
-import Navbar from '../NavBar/NavBar'
+import Navbar from '../NavBar/NavBar';
+import { useNavigate } from 'react-router-dom';
+
 const DashBoard = () => {
+  const navigate = useNavigate();
+
+  const handlemsp = () => {
+    navigate("/minimum-support-prize"); // Use navigate directly
+  };
+
   return (
     <div className={styles.dashboard}>
       <Navbar />
 
       <div className={styles.imageContainer}>
-        <img src="src/assets/Images/farmers dashbord.jpeg" alt="National Farmer's Day" />
+        <img src="src/assets/farmerdashboard.png" alt="National Farmer's Day" />
       </div>
 
       <div className={styles.featuresSection}>
         <h2>Standout <span className={styles.featuresHighlight}>Features</span></h2>
         <div className={styles.features}>
-          <div className={styles.featureCard}>
-            <img src="/src/assets/Images/Messenger-app-logo.png" alt="SMS System" />
-            <h3>Sms System</h3>
-            <p>Upload and Edit Your Products via SMS</p>
+          <div 
+            className={styles.featureCard}
+            onClick={handlemsp} 
+          >
+            <img src="/src/assets/MSP.jpg" alt="SMS System" />
+            <h3>Minimum Support Price</h3>
+            <p>Check the Minimum support price for your goods</p>
           </div>
-          <div className={styles.featureCard}>
+          <div className={styles.featureCard}>       
             <img src="/src/assets/Images/hands.png" alt="Buyer Connection" />
             <h3>Buyer Connection</h3>
             <p>Get in direct touch with the buyer to satisfy its need</p>

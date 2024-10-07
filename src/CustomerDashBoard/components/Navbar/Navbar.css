@@ -210,3 +210,15 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+
+/* Dot for cart notifications */
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 50%;
+    top: 18px; /* Adjust this value for better alignment */
+    right: 74px; /* Adjust this value for better alignment */
+}
