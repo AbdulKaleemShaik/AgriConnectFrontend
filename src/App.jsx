@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './HomePage/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
+
 import CustomerLogin from './CustomerComponents/Authentication/CustomerLogin';
 import CustomerRegister from './CustomerComponents/Authentication/CustomerRegister'
 import FarmerLogin from './FarmerComponents/FarmerLoginPage/FarmerLogin'
@@ -34,16 +37,16 @@ function App() {
     <UserProvider>
       <Routes>
         {/* Public Routes */}
-        <Route path='/' element={<Home />} />
-        <Route path='/forgetPassword'  element={<AskEmailPage/>}/>
-
+        <Route path='/' element={<CustomerDashboard />} />
+        <Route path='/forgetPassword' element={<AskEmailPage />} />
+        <Route path='/HomeLogin' element={<Home/>}/>
         <Route path='/customerlogin' element={<CustomerLogin />} />
         <Route path='/customerregestration' element={<CustomerRegister />} />
         <Route path='/farmerlogin' element={<FarmerLogin />} />
         <Route path='/farmerorders' element={<FarmerOrders />}></Route>
         <Route path='/farmerregistration' element={<FarmerRegestration />} />
         <Route path='/minimum-support-prize' element={<MSP />}></Route>
-        <Route path='/resetPassword/:email' element={<ResetPassword/>}/>
+        <Route path='/resetPassword/:email' element={<ResetPassword />} />
 
         {/* Protected Routes */}
         <Route path='/customerdashboard' element={<ProtectedRoute allowedRoles={['ROLE_USER']} />}>
@@ -52,16 +55,16 @@ function App() {
             <Route path='cart' element={<Cart />} />
             <Route path='customerorders' element={<CustomerOrdersPage />}></Route>
             <Route path='product/:id' element={<ProductDetails />} />
-            
+
             <Route path="order" element={<PlaceOrder />} />
-            <Route path='customer-profilepage' element={<CustomerProfilePage/>}></Route>
+            <Route path='customer-profilepage' element={<CustomerProfilePage />}></Route>
             <Route path="tracking-page" element={<OrderTracking />}></Route>
             <Route path='paymentoptions' element={<PaymentOptions />} />
           </Route>
         </Route>
 
 
-        
+
 
         {/* Admin-Only Routes */}
         <Route path="/productspage" element={<ProtectedRoute allowedRoles={['ROLE_ADMIN']} />}>
@@ -92,7 +95,7 @@ function App() {
           <Route path="" element={<EditProduct />} />
         </Route>
       </Routes>
-
+      <ToastContainer /> 
     </UserProvider>
   );
 }
