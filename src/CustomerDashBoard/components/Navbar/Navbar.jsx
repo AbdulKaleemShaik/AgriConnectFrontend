@@ -11,9 +11,11 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
   const { userDetails } = useUser();
-  console.log(userDetails.profileImage);
+ // console.log(userDetails.profileImage);
 
   const logout = () => {
+    console.log("came to remove details");
+    
     localStorage.removeItem("token");
     localStorage.removeItem("userDetails");
     setToken("");
@@ -65,7 +67,7 @@ const Navbar = ({ setShowLogin }) => {
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
-        {console.log(userDetails.profileImage)}
+        {/* {console.log(userDetails.profileImage)} */}
         <div className="navbar-profile">
           {userDetails && userDetails.profileImage ? (
             

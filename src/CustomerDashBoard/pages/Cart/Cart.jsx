@@ -222,12 +222,12 @@ const Cart = () => {
 
   useEffect(() => {
     axiosInstance.get(`${import.meta.env.VITE_API_URL}/user/cart`).then((response) => {
-      console.log(response);
+      //console.log(response);
       setCartItems(response.data);
     });
   }, []);
 
-  console.log(cartItems);
+//  console.log(cartItems);
 
   return (
     <>
@@ -260,7 +260,7 @@ const Cart = () => {
                         <img src="path/to/placeholder-image.jpg" alt="Placeholder" />
                       )}
                       {console.log(item.title)}
-                      <p>{item.product.title}</p>
+                      <p>{item.title}</p>
                       <p>₹{item.totalPrice}</p>
                       <p>{item.quantity}</p>
                       <p>₹{item.totalPrice * item.quantity}</p>
