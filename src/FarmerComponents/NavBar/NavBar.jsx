@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Avatar, Menu, MenuItem, Typography } from '@mui/material';
+import { AppBar, Toolbar, Avatar, Menu, MenuItem, Typography, IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu'; // Import MenuIcon from Material-UI
 import styles from './Navbar.module.css';
 import { useUser } from '../../Context/UserContext';
-
+import { useMemo } from 'react';
 function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu
   const navigate = useNavigate();
-  const { userDetails } = useUser(); // Access user details from context
+  const { userDetails, setUserDetails } = useUser(); // Access user details from context
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,8 +22,17 @@ function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userDetails');
-    navigate('/farmerlogin');
+    setUserDetails(null);
     handleMenuClose();
+    navigate('/farmerlogin');
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -34,20 +45,59 @@ function NavBar() {
         <Typography variant="h6" className={styles.logo}>
           🌳 Agri Connect
         </Typography>
-        <div className={styles.navLinks}>
-          <Typography variant="button" onClick={() => navigate('/farmerdashboard')} className={styles.navLink}>
+
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleMobileMenu} // Toggle mobile menu
+          className={styles.menuIcon}
+          
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <div className={`${styles.navLinks} ${mobileMenuOpen ? styles.mobileNav : ''}`}>
+          <Typography
+            variant="button"
+            onClick={() => {
+              navigate('/farmerdashboard');
+              handleMobileMenuClose();
+            }}
+            className={styles.navLink}
+          >
             Home
           </Typography>
-          <Typography variant="button" onClick={() => navigate('/addproduct')} className={styles.navLink}>
+          <Typography
+            variant="button"
+            onClick={() => {
+              navigate('/addproduct');
+              handleMobileMenuClose();
+            }}
+            className={styles.navLink}
+          >
             Add New Product
           </Typography>
-          <Typography variant="button" onClick={() => navigate('/myproducts')} className={styles.navLink}>
+          <Typography
+            variant="button"
+            onClick={() => {
+              navigate('/myproducts');
+              handleMobileMenuClose();
+            }}
+            className={styles.navLink}
+          >
             My Products
           </Typography>
-          <Typography variant="button" onClick={() => navigate('/farmerorders')} className={styles.navLink}>
+          <Typography
+            variant="button"
+            onClick={() => {
+              navigate('/farmerorders');
+              handleMobileMenuClose();
+            }}
+            className={styles.navLink}
+          >
             Orders
           </Typography>
-          
 
           <Avatar
             alt="Profile"
@@ -66,8 +116,8 @@ function NavBar() {
             onClose={handleMenuClose}
             className={styles.dropdownMenu}
           >
-            <MenuItem onClick={() => navigate('/farmerprofile')}>Profile Page</MenuItem>
-            <MenuItem onClick={() => navigate('/farmerorders')}>Orders Page</MenuItem>
+            <MenuItem onClick={() => { navigate('/farmerprofile'); handleMenuClose(); }}>Profile Page</MenuItem>
+            <MenuItem onClick={() => { navigate('/farmerorders'); handleMenuClose(); }}>Orders Page</MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </div>

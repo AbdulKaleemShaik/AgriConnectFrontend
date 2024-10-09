@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Grid, TextField, Button, MenuItem, FormHelperText } from '@mui/material';
 import CustomerNav from './CustomerNav';
 import { registerService } from '../../Service/UserService';
-
+import Navbar from '../../HomePage/NavBar';
 
 const statesList = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -112,6 +112,7 @@ const CustomerRegister = () => {
 
   return (
     <div>
+      <Navbar />
       <CustomerNav />
       <Grid container justifyContent="center" spacing={2} style={{ marginTop: '20px' }}>
         <Grid item xs={12} sm={8} md={6}>

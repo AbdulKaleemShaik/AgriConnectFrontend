@@ -55,3 +55,73 @@
 .lastButtonGreen:hover {
   background-color: rgb(2, 200, 2); /* Darker green on hover */
 }
+
+/* Responsiveness */
+
+/* Large Tablets / Small Desktops (up to 1200px) */
+@media (max-width: 1200px) {
+  .textWrapper {
+    margin: 60px 40px 0 50px;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items vertically */
+  }
+
+  .imageContainer {
+    height: 180px; /* Smaller image */
+    width: 180px;
+    margin-bottom: 20px;
+  }
+
+  .text {
+    font-size: 14px; /* Adjust text size for smaller screens */
+  }
+}
+
+/* Tablets (up to 768px) */
+@media (max-width: 768px) {
+  .textWrapper {
+    margin: 40px 30px 0 30px;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+  }
+
+  .imageContainer {
+    height: 150px; /* Further reduce image size */
+    width: 150px;
+    margin-bottom: 15px;
+  }
+
+  .text {
+    font-size: 12px; /* Smaller font for better readability */
+  }
+
+  .lastButtonGreen {
+    padding: 8px 16px; /* Reduce button padding */
+    font-size: 14px;
+  }
+}
+
+/* Mobile Phones (up to 480px) */
+@media (max-width: 480px) {
+  .textWrapper {
+    margin: 20px 15px 0 15px;
+    flex-direction: column; /* Stack image and text */
+    align-items: center;
+  }
+
+  .imageContainer {
+    height: 120px; /* Smaller round image */
+    width: 120px;
+    margin-bottom: 10px;
+  }
+
+  .text {
+    font-size: 10px; /* Smaller text for mobile */
+    margin-bottom: 15px;
+  }
+
+  .lastButtonGreen {
+    padding: 6px 12px; /* Smaller button for mobile */
+    font-size: 12px;
+  }
+}

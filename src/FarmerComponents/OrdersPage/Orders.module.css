@@ -1,5 +1,5 @@
 .order_table_container {
-    width: 90%;
+    width: 90%; /* Default width */
     margin: 0 auto;
     margin-top: 35px;
     text-align: center;
@@ -15,12 +15,13 @@ h2 {
 
 .tableContainer {
     margin-top: 20px;
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
 }
 
 .order_table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: 16px; /* Default font size */
 }
 
 .order_table th, .order_table td {
@@ -66,5 +67,42 @@ h2 {
 
 .tableCell:hover {
     background-color: #d4edda; /* Light green on hover */
-  }
+}
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .order_table_container {
+        width: 95%; /* Adjust width for tablet devices */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .order_table {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .order_table th, .order_table td {
+        padding: 8px; /* Reduce padding for table cells */
+    }
+
+    .product_details {
+        max-width: 150px; /* Reduce max-width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .order_table_container {
+        padding: 10px; /* Further reduce padding for small screens */
+    }
+
+    .order_table {
+        font-size: 12px; /* Further decrease font size */
+    }
+
+    .order_table th, .order_table td {
+        padding: 6px; /* Further reduce padding for table cells */
+    }
+
+    .product_details {
+        max-width: 100px; /* Further reduce max-width for product details */
+    }
+}
