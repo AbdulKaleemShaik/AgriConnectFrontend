@@ -1,14 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-// Adjust the import path if needed
-import "./components/Navbar/Navbar.css";
+// import "./components/Navbar/Navbar.module.css";
 
 
 const CustomerDashboardLayout = () => {
     return (
         <div>
-            <Navbar />
             <main>
                 <Outlet /> {/* Renders the child routes */}
             </main>

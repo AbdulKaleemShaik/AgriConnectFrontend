@@ -2,6 +2,7 @@
 
 .product_details_container {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     justify-content: space-between;
     padding: 20px;
     margin: 0 auto;
@@ -12,11 +13,12 @@
 
 .product_info {
     display: flex;
+    flex: 1 1 70%; /* Flex-grow and shrink for responsiveness */
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 70%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Margin for space between elements */
 }
 
 .product_image {
@@ -85,7 +87,7 @@
 }
 
 .additional_info {
-    width: 25%;
+    flex: 1 1 25%; /* Flex-grow and shrink for responsiveness */
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -111,4 +113,71 @@
 /* Global CSS for page background */
 body {
     background-color: #e3e6e6;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 900px) {
+    .product_details_container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center content */
+    }
+
+    .product_info {
+        width: 100%; /* Full width on smaller screens */
+        margin-right: 0; /* Remove margin */
+    }
+
+    .additional_info {
+        width: 100%; /* Full width on smaller screens */
+        margin-top: 20px; /* Add space between sections */
+    }
+
+    .product_image {
+        width: 100%; /* Full width for image */
+        height: auto; /* Auto height for aspect ratio */
+        margin: 0 0 20px 0; /* Remove margin for mobile */
+    }
+
+    .product_description h1 {
+        font-size: 22px; /* Reduce font size */
+    }
+
+    .product_description p {
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .price {
+        font-size: 20px; /* Reduce font size */
+    }
+
+    .add_to_cart_btn {
+        font-size: 16px; /* Reduce font size */
+        padding: 8px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 600px) {
+    .product_description h1 {
+        font-size: 20px; /* Further reduce font size */
+    }
+
+    .product_description p {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    .price {
+        font-size: 18px; /* Further reduce font size */
+    }
+
+    .quantity_selector input {
+        width: 50px; /* Reduce input width */
+    }
+
+    .additional_info h2 {
+        font-size: 18px; /* Reduce heading size */
+    }
+
+    .additional_info ul li {
+        font-size: 12px; /* Reduce font size */
+    }
 }

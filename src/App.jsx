@@ -47,6 +47,7 @@ function App() {
         <Route path='/farmerregistration' element={<FarmerRegestration />} />
         <Route path='/minimum-support-prize' element={<MSP />}></Route>
         <Route path='/resetPassword/:email' element={<ResetPassword />} />
+        <Route path='customerdashboard/product/:id' element={<ProductDetails />} />
 
         {/* Protected Routes */}
         <Route path='/customerdashboard' element={<ProtectedRoute allowedRoles={['ROLE_USER']} />}>
@@ -54,7 +55,7 @@ function App() {
             <Route index element={<CustomerDashboard />} />
             <Route path='cart' element={<Cart />} />
             <Route path='customerorders' element={<CustomerOrdersPage />}></Route>
-            <Route path='product/:id' element={<ProductDetails />} />
+           
 
             <Route path="order" element={<PlaceOrder />} />
             <Route path='customer-profilepage' element={<CustomerProfilePage />}></Route>

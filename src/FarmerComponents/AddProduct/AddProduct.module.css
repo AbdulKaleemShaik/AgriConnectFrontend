@@ -2,7 +2,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  max-width: 450px; /* Maximum width for larger screens */
   margin: 50px auto;
   padding: 25px;
   border-radius: 10px;
@@ -37,7 +37,7 @@ h2 {
 .select,
 .inputFile,
 .textarea {
-  width: 100%;
+  width: 100%; /* Full width for all screen sizes */
   padding: 12px;
   margin-top: 6px;
   margin-bottom: 20px;
@@ -51,7 +51,7 @@ h2 {
 .select:focus,
 .inputFile:focus,
 .textarea:focus {
-  border-color: #green;
+  border-color: green; /* Fixed typo here (it was '#green') */
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
 }
 
@@ -91,4 +91,26 @@ h2 {
 
 .button:active {
   transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .form {
+    padding: 15px; /* Reduce padding for smaller screens */
+    margin: 20px; /* Reduce margin for smaller screens */
+    max-width: 90%; /* Allow form to take more width on smaller screens */
+  }
+
+  h2 {
+    font-size: 20px; /* Reduce heading font size for smaller screens */
+    margin-bottom: 20px; /* Reduce margin */
+  }
+
+  .label,
+  .input,
+  .select,
+  .textarea,
+  .button {
+    font-size: 14px; /* Slightly smaller font size */
+  }
 }

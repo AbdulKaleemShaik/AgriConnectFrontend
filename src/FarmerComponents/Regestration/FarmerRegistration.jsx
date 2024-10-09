@@ -125,8 +125,8 @@ const FarmerRegistration = () => {
         <Lottie options={defaultOptions} height={200} width={200} />
       </div>
       <Grid container justifyContent="center" spacing={1} style={{ marginTop: '20px' }}>
-        <Grid item xs={12} sm={8} md={6} className="form-container">
-          <h2>Farmer Registration</h2>
+  <Grid item xs={12} sm={8} md={6} className="form-container">
+    <h2>Farmer Registration</h2>
           <form onSubmit={handleSubmit} noValidate>
             <TextField
               fullWidth

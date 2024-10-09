@@ -1,8 +1,7 @@
-/* Navbar.module.css */
-
 .navbar {
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .logo {
@@ -29,7 +28,6 @@
 }
 
 .navLink:hover {
-   /* Light green background on hover */
   color: #1faf27; /* Darker green text on hover */
 }
 
@@ -43,13 +41,44 @@
 }
 
 .menuIcon {
-  color: #000; /* Black color for the three dots */
+  display: none;
+  background-color:black 
 }
 
-.menuItem {
-  font-weight: bold;
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none; /* Hide nav links by default */
+    flex-direction: column; /* Stack items vertically */
+    position: absolute; /* Position them absolutely */
+    top: 56px; /* Position below the AppBar */
+    right: 0; /* Align to the right */
+    background-color: #fff; /* Background color */
+    width: 100%; /* Full width */
+    z-index: 1; /* Ensure it is above other content */
+    padding: 10px 0; /* Padding around menu */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
+  }
+
+  .mobileNav {
+    display: flex; /* Show the nav links when mobile menu is open */
+  }
+
+  .menuIcon {
+    display: block;
+    color:black /* Show menu icon on mobile */
+  }
+
+  .navLink {
+    padding: 15px 20px; /* Add more padding for touch targets */
+  }
+
+
 }
-.userGreeting
-{
-  color: black;
+
+@media (hover: none) {
+  .css-1d6w9lk-MuiButtonBase-root-MuiIconButton-root:hover {
+      background-color: #0000002e;
+      color: black;
+  }
 }

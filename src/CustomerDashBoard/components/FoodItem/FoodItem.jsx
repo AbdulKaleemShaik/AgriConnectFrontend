@@ -245,9 +245,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     if (!userDetails) {
       // Show toast notification
       toast.warn("You need to log in or register to add items to your cart.", {
-        // position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,
-        onClose: () => navigate("/HomeLogin"), // Navigate to login page after toast closes
       });
       return;
     }
