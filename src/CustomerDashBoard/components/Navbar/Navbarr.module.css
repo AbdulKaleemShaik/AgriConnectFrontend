@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: -126px;
-  margin-right: -131px;
+  margin-left: 9px;
+  margin-right: 26px;
 }
 
 .logo {
@@ -138,8 +138,13 @@ a {
   cursor: pointer;
   font-size: 24px;
   display: none; /* Hide by default */
+  
 }
 
+.menuicon {
+  display: none;
+  background-color:black 
+}
 .dropdownMenu {
   position: absolute;
   background-color: #fff;
