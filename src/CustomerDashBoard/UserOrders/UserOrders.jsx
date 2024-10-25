@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap'; 
 import { Navigate, useNavigate } from 'react-router-dom';
 import CustomerNav from '../../CustomerComponents/Authentication/CustomerNav';
+import Navbar from '../components/Navbar/Navbar'
 
 const UserOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -76,6 +77,7 @@ const UserOrders = () => {
 
     return (
         <>
+        <Navbar />
     <CustomerNav/>
         <div className="container my-5">
             <h2 className="text-center mb-4">My Orders</h2>
@@ -110,7 +112,7 @@ const UserOrders = () => {
                                     </td>
                                     <td>{order.product.title}</td>
                                     <td>{order.quantity}</td>
-                                    <td>${order.price * order.quantity}</td>
+                                    <td>₹{order.price * order.quantity}</td>
                                     <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                                     <td>{order.orderAddress.address}, {order.orderAddress.city}</td>
                                     <td>

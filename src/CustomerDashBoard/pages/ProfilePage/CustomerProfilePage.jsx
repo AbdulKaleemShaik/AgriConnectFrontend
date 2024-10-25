@@ -4,7 +4,7 @@ import { Avatar, Box, Button, Card, Container, Grid, TextField, Typography } fro
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUser } from '../../../Context/UserContext';
-// import NavBar from '../../components/Navbar';
+import Navbar from '../../components/Navbar/Navbar'
 import profilePhoto from '../../../assets/pic1.png';
 import styles from './ProfilePage.module.css'; 
 
@@ -148,7 +148,7 @@ function CustomerProfilePage() {
 
   return (
     <>
-      {/* <NavBar /> */}
+      <Navbar />
       <Container maxWidth="md" sx={{ mt: 5 }}>
         <ToastContainer />
         <Card sx={{ p: 4 }} className={styles.card}>

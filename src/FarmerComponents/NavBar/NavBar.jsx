@@ -48,11 +48,10 @@ function NavBar() {
 
         <IconButton
           edge="start"
-          color="inherit"
+          color="black"
           aria-label="menu"
           onClick={toggleMobileMenu} // Toggle mobile menu
           className={styles.menuIcon}
-          
         >
           <MenuIcon />
         </IconButton>
